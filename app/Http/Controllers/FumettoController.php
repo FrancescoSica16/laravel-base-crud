@@ -38,7 +38,29 @@ class FumettoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();       
+
+        // per inserire dati nella tabella fumetti devo creare un oggetto fumetto
+        $fumetto = new Fumetto();
+
+        // ! METODO MANUALE DI INSERIMENTO
+        // $fumetto->title = $data['title'];
+        // $fumetto->description = $data['description'];
+        // $fumetto->author = $data['author'];
+        // $fumetto->url = $data['url'];
+
+        // ? METODO FILL - e ricordarsi di inserire i fillable in metods
+        // $fumetto->fill($data);
+
+        // # METODO CREATE - anche questo richiede di inserire i fillables nel rispettivo models    
+        $fumetto = Fumetto::create($data);
+
+        // * per salvare i dati
+        $fumetto->save();
+
+        // todo: dopo il salvataggio possiamo scegliere di essere reindirizzati a un pagina scelta
+
+        return redirect()->route("fumetti.show", $fumetto);
     }
 
     /**

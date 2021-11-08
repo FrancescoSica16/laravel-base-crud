@@ -3,7 +3,10 @@
 @section('title', "Comics") 
 
 @section('contenuto')
-<h2>prova funzionamento</h2>
+
+ <button><a href="{{route('fumetti.create')}}"> Nuovo Fumetto</a></button>
+   
+
 <div id="main-block">
     <div id="main-wrapper" class="container">
 
@@ -11,11 +14,9 @@
         
         <div class="comic-item">
             <a href='{{ route ("fumetti.show" , ["fumetti" => $fumetto->id] ) }}'>
-
-           
-
+                
                 <img src="{{$fumetto["url"]}}" alt="">
-                <h4>{{$fumetto["title"]}}</h4>
+                <h4>{{$fumetto["title"]}}</h4>   
             </a>
         </div> 
         @endforeach 
