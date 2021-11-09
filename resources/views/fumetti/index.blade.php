@@ -14,9 +14,9 @@
         
         <div class="comic-item">
             <a href='{{ route ("fumetti.show" , ["fumetti" => $fumetto->id] ) }}'>
-                
+                <h4>{{$fumetto["title"]}}</h4>
                 <img src="{{$fumetto["url"]}}" alt="">
-                <h4>{{$fumetto["title"]}}</h4>   
+                <a href="{{ route( "fumetti.edit" , $fumetto->id )}}"><button>Edit</button></a>          
             </a>
         </div> 
         @endforeach 
