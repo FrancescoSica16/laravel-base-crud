@@ -82,9 +82,10 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fumetto $fumetto)
+    public function edit($id)
     {
-        
+        $fumetto = Fumetto::findOrFail($id);
+
         return view('fumetti.edit', compact("fumetto"));
     }
 
@@ -95,16 +96,13 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fumetto $fumetto)
+    public function update(Request $request, Fumetto $fumetti)
     {
         $data = $request->all();
 
-        dd($data);
+        $fumetti->update($data);
 
-        // $fumetto->update($data);
-
-        // return redirect()->route('fumetto.show', $fumetto);
-
+         return redirect()->route('fumetti.show',  $fumetti);
 
     }
 

@@ -1,6 +1,8 @@
 @extends('layout.main')
 
+
 @section("contenuto")
+
 
     <a href="{{route("fumetti.index")}}">Torna alla lista fumetti</a>
     <div>
@@ -8,10 +10,11 @@
     </div>
     
     <div class="form-body">
-        <form action="{{ route('fumetti.update' , $fumetto) }}" method="POST">
+        <form action="{{ route("fumetti.update", ['fumetti' => $fumetto->id]) }}" method="POST">
             {{-- token utilizzato da laravel per assicurarsi che la chiamata post avvenga tramite un form del sito --}}
+            @csrf
             @method("PATCH")
-            @csrf 
+             
 
             <label for="title">Nome fumetto</label>
             <input type="text" name="title" id="title" placeholder="inserisci nome fumetto" value="{{$fumetto->title}}" required>
@@ -27,7 +30,7 @@
 
             <div>
              <button type="reset">Cancella tutti i campi</button>
-             <button type="submit">Inserisci nuovo fumetto</button>
+             <button type="submit">Modifica {{$fumetto->title}}</button>
             </div>
         </form>
 
